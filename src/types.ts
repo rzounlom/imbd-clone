@@ -9,3 +9,5 @@ export type Movie = {
   trailerUrl: string;
   ratings: number[];
 };
+
+export type NewMovie = Omit<Movie, "id">;
