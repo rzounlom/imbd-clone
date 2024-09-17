@@ -1,6 +1,6 @@
 import "./Navbar.css"; // Import the CSS file for styling
 
-import AddMovieModal from "../add-movie-modal/AddMovieModal";
+import AddMovieModal from "../modals/AddMovieModal";
 import { NewMovie } from "../../types";
 // Navbar.js
 import { useState } from "react";

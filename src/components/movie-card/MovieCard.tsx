@@ -1,6 +1,9 @@
 import "./MovieCard.css"; // Import the CSS for styling
 
+import { Badge } from "react-bootstrap";
+import DeleteMovieModal from "../modals/DeleteMovieModal";
 import { Movie } from "../../types";
+import { useState } from "react";
 
 interface MovieCardProps {
   movie: Movie;
@@ -8,6 +11,8 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({ movie, deleteMovie }: MovieCardProps) => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   // Calculate average rating
   const averageRating =
     movie.ratings.reduce((acc: number, rating: number) => acc + rating, 0) /
@@ -15,11 +20,18 @@ const MovieCard = ({ movie, deleteMovie }: MovieCardProps) => {
 
   return (
     <div className="movie-card">
+      <DeleteMovieModal
+        handleClose={() => setShowDeleteModal(false)}
+        show={showDeleteModal}
+        deleteMovie={() => deleteMovie(movie.id)}
+      />
       <img src={movie.imgUrl} alt={movie.title} className="movie-card-image" />
       <div className="movie-card-content">
         <h3 className="movie-card-title">{movie.title}</h3>
         <p className="movie-card-year">({movie.year})</p>
-        <p className="movie-card-genre">{movie.genre}</p>
+        <p className="movie-card-genre">
+          <Badge bg="primary">{movie.genre}</Badge>{" "}
+        </p>
         <p className="movie-card-description">
           {movie.description.length > 100
             ? movie.description.substring(0, 100) + "..."
@@ -37,7 +49,7 @@ const MovieCard = ({ movie, deleteMovie }: MovieCardProps) => {
           Watch Trailer
         </a>
         <div
-          onClick={() => deleteMovie(movie.id)}
+          onClick={() => setShowDeleteModal(true)}
           className="movie-card-trailer-delete"
         >
           Delete Movie
