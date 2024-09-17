@@ -18,11 +18,12 @@ html {
   position: fixed;
   top: 0;
   z-index: 1000;
-  height: 65px;
+  height: 52px;
 }
 
 .navbar-container {
   width: 100%;
+  height: 100%;
   max-width: 1200px;
   padding: 0 20px;
   display: flex;
