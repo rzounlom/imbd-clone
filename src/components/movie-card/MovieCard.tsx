@@ -4,7 +4,7 @@ import { Movie } from "../../types";
 
 interface MovieCardProps {
   movie: Movie;
-  deleteMovie: (id: number) => void;
+  deleteMovie: (id: string) => void;
 }
 
 const MovieCard = ({ movie, deleteMovie }: MovieCardProps) => {
@@ -19,7 +19,7 @@ const MovieCard = ({ movie, deleteMovie }: MovieCardProps) => {
       <div className="movie-card-content">
         <h3 className="movie-card-title">{movie.title}</h3>
         <p className="movie-card-year">({movie.year})</p>
-        <p className="movie-card-genre">{movie.genre.join(", ")}</p>
+        <p className="movie-card-genre">{movie.genre}</p>
         <p className="movie-card-description">
           {movie.description.length > 100
             ? movie.description.substring(0, 100) + "..."

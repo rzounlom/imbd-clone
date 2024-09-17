@@ -7,7 +7,7 @@ import MovieCard from "../movie-card/MovieCard";
 
 interface MovieListProps {
   movies: Movie[];
-  deleteMovie: (id: number) => void;
+  deleteMovie: (id: string) => void;
 }
 
 const MovieList = ({ movies, deleteMovie }: MovieListProps) => {

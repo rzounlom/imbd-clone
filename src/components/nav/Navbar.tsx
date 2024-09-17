@@ -1,5 +1,6 @@
 import "./Navbar.css"; // Import the CSS file for styling
 
+import AddMovieModal from "../add-movie-modal/AddMovieModal";
 import { NewMovie } from "../../types";
 // Navbar.js
 import { useState } from "react";
@@ -11,32 +12,41 @@ interface NavbarProps {
 const Navbar = ({ addMovie }: NavbarProps) => {
   // State to manage mobile menu visibility
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   // Toggle mobile menu visibility
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const tempNewMovie: NewMovie = {
-    type: "movie",
-    title: "New Movie",
-    description: "New Movie Coming Soon!",
-    year: "2024",
-    genre: ["TBD"],
-    ratings: [7, 8, 8],
-    imgUrl:
-      "https://img.freepik.com/free-vector/neon-style-coming-soon-glowing-background-design_1017-25516.jpg",
-    trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  };
+  // const tempNewMovie: NewMovie = {
+  //   type: "movie",
+  //   title: "New Movie",
+  //   description: "New Movie Coming Soon!",
+  //   year: "2024",
+  //   genre: "Action",
+  //   ratings: [7, 8, 8],
+  //   imgUrl:
+  //     "https://img.freepik.com/free-vector/neon-style-coming-soon-glowing-background-design_1017-25516.jpg",
+  //   trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  // };
+
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
   return (
     <nav className="navbar">
+      <AddMovieModal
+        show={showModal}
+        handleClose={handleClose}
+        addMovie={addMovie}
+      />
       <div className="navbar-container">
         <div className="navbar-brand">
           <a href="/" className="navbar-logo">
             IMBD
           </a>
-          <div id="add-movie-icon" onClick={() => addMovie(tempNewMovie)}>
+          <div id="add-movie-icon" onClick={handleShow}>
             +
           </div>
         </div>
